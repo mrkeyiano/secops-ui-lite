@@ -1,0 +1,67 @@
+.modal-header {
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.modal-header .modal-title h3 {
+    margin: 0px;
+    font-size: 1.6rem;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    margin: 0px 30px;
+}
+
+.image-container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-container img {
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+.info-retrieved {
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.info-retrieved-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.info {
+    display: flex;
+    margin: 15px auto;
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .info {
+        width: 100% !important;
+        margin: 5px !important;
+    }
+}
+
+.info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 20px;
+}
+
+.info p {
+    margin: 0 10px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}

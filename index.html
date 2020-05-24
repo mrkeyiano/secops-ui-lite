@@ -1,232 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon" type="image/png" href="images/DB_16х16.png">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SecOps Dashboard</title>
+    <head>
+        <link rel="icon" type="image/png" href="images/DB_16х16.png" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>SecOps Dashboard</title>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes" />
 
+        <!-- Add to homescreen for Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="Material Design Lite" />
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+        <!-- Tile icon for Win8 (144x144 + tile color) -->
+        <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png" />
+        <meta name="msapplication-TileColor" content="#3372DF" />
 
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
+        <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+        <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
-          type='text/css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- inject:css -->
-    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
-    <link rel="stylesheet" href="css/lib/getmdl-select.min.css">
-    <link rel="stylesheet" href="css/lib/nv.d3.css">
-    <link rel="stylesheet" href="css/application.css">
-    <!-- endinject -->
-    <style>
-        @media (min-width: 1025px) {
-            .modal .modal-dialog.larger {
-                width: 90% !important;
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!-- inject:css -->
+        <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/lib/getmdl-select.min.css" />
+        <link rel="stylesheet" href="css/lib/nv.d3.css" />
+        <link rel="stylesheet" href="css/application.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+        <!-- endinject -->
+        <style>
+            @media (min-width: 1025px) {
+                .modal .modal-dialog.larger {
+                    width: 90% !important;
+                }
+
+                #userDetailsHolder .modal-dialog.modal-lg {
+                    width: 85%;
+                }
+
+                #userDetailsHolder .modal-dialog.modal-lg.larger {
+                    width: 90% !important;
+                }
             }
 
-            #userDetailsHolder .modal-dialog.modal-lg {
-                width: 85%;
+            @media (min-width: 760px) {
+                #userDetailsHolder .modal-dialog.modal-lg {
+                    width: 80%;
+                }
             }
 
-            #userDetailsHolder .modal-dialog.modal-lg.larger {
-                width: 90% !important;
+            #userDetailsHolder .close-wrapper,
+            #delayedPaymentsModal .close-wrapper {
+                display: block;
+                position: absolute;
+                right: -10px;
+                top: -10px;
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                border-radius: 50%;
+                vertical-align: bottom;
+                text-align: center;
+                cursor: pointer;
             }
 
-
-        }
-
-        @media (min-width: 760px) {
-            #userDetailsHolder .modal-dialog.modal-lg {
-                width: 80%;
+            #userDetailsHolder .close-icon,
+            #delayedPaymentsModal .close-icon {
+                font-size: 20px;
+                vertical-align: bottom;
+                margin-top: 8px;
             }
-        }
+        </style>
+    </head>
+    <body>
+        <!--Start of modal-->
+        <div class="modal fade" id="userDetailsHolder">
+            <div class="modal-dialog modal-lg" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--                <div class="modal-close close-wrapper text-orange text-size-large" data-dismiss="modal" data-toggle="tooltip" title="Close">-->
 
-        #userDetailsHolder .close-wrapper,
-        #delayedPaymentsModal .close-wrapper {
-            display: block;
-            position: absolute;
-            right: -10px;
-            top: -10px;
-            width: 40px;
-            height: 40px;
-            background: #fff;
-            border-radius: 50%;
-            vertical-align: bottom;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        #userDetailsHolder .close-icon,
-        #delayedPaymentsModal .close-icon {
-            font-size: 20px;
-            vertical-align: bottom;
-            margin-top: 8px;
-        }
-
-    </style>
-</head>
-<body>
-
-<!--Start of modal-->
-<div class="modal fade" id="userDetailsHolder">
-    <div class="modal-dialog modal-lg" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-<!--                <div class="modal-close close-wrapper text-orange text-size-large" data-dismiss="modal" data-toggle="tooltip" title="Close">-->
-
-<!--                    <i class="material-icons">exit_to_app</i>-->
-<!--                </div>-->
-                <div class="modal-title">
-                    <h3 class="modal-text">Retrieved:</h3>
-                </div>
-
-            </div>
-            <div class="modal-body">
-                Fetching...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--End of modal-->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
-    <header class="mdl-layout__header">
-    </header>
-
-    <div class="mdl-layout__drawer">
-        <header>SECOPS</header>
-        <div class="scroll__wrapper" id="scroll__wrapper">
-            <div class="scroller" id="scroller">
-                <div class="scroll__container" id="scroll__container">
-                    <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link" href="">
-                            <i class="material-icons" role="presentation">dashboard</i>
-                            Dashboard
-                        </a>
-
-
-                        <div class="mdl-layout-spacer"></div>
-                        <hr>
-                        <a class="mdl-navigation__link" href="https://github.com/mrkeyiano">
-                            <i class="material-icons" role="presentation">link</i>
-                            GitHub
-                        </a>
-                    </nav>
-                </div>
-            </div>
-            <div class='scroller__bar' id="scroller__bar"></div>
-        </div>
-    </div>
-
-    <main class="mdl-layout__content ui-form-components">
-
-        <div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-
-            <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h5 class="mdl-card__title-text text-color--white">Retrieve User Metadata</h5>
+                        <!--                    <i class="material-icons">exit_to_app</i>-->
+                        <!--                </div>-->
+                        <div class="modal-title">
+                            <h3 class="modal-text">Retrieved:</h3>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        <form class="form form--basic">
-                            <div class="mdl-grid">
-                                <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
-                                    <h3 class="text-color--smooth-gray">Please provide Account number or Bvn of customer to fetch details</h3>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="account-number">
-                                        <label class="mdl-textfield__label" for="account-number">Account Number</label>
-                                    </div>
-<!--                                    <h3 class="text-color&#45;&#45;smooth-gray">via BVN</h3>-->
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
-                                        <input class="mdl-textfield__input" type="text" id="bvn">
-                                        <label class="mdl-textfield__label" for="bvn">Bank Verification Number</label>
-                                    </div>
-                                    <li class="mdl-list__item">
-                                        <button type="button" id="show-dialog" data-toggle="modal" data-target="#userDetailsHolder"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
-                                            Submit
-                                        </button>
-                                    </li>
+                    <div class="modal-body">
+                        <div class="image-container">
+                            <img
+                                src="https://images.unsplash.com/photo-1520528105264-de3db89485f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                                alt="image of user"
+                            />
+                        </div>
+                        <div class="info-retrieved">
+                            <div class="info-retrieved-inner"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!--End of modal-->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+            <header class="mdl-layout__header"></header>
+
+            <div class="mdl-layout__drawer">
+                <header>SECOPS</header>
+                <div class="scroll__wrapper" id="scroll__wrapper">
+                    <div class="scroller" id="scroller">
+                        <div class="scroll__container" id="scroll__container">
+                            <nav class="mdl-navigation">
+                                <a class="mdl-navigation__link" href="">
+                                    <i class="material-icons" role="presentation">dashboard</i>
+                                    Dashboard
+                                </a>
+
+                                <div class="mdl-layout-spacer"></div>
+                                <hr />
+                                <a class="mdl-navigation__link" href="https://github.com/mrkeyiano">
+                                    <i class="material-icons" role="presentation">link</i>
+                                    GitHub
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="scroller__bar" id="scroller__bar"></div>
+                </div>
+            </div>
+
+            <main class="mdl-layout__content ui-form-components">
+                <div
+                    class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top"
+                >
+                    <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h5 class="mdl-card__title-text text-color--white">Retrieve User Metadata</h5>
                             </div>
-                        </form>
+                            <div class="mdl-card__supporting-text">
+                                <form class="form form--basic">
+                                    <div class="mdl-grid">
+                                        <div
+                                            class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article"
+                                        >
+                                            <h3 class="text-color--smooth-gray">
+                                                Please provide Account number or Bvn of customer to fetch details
+                                            </h3>
+                                            <div
+                                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                            >
+                                                <input class="mdl-textfield__input" type="text" id="account-number" />
+                                                <label class="mdl-textfield__label" for="account-number"
+                                                    >Account Number</label
+                                                >
+                                            </div>
+                                            <!-- <h3 class="text-color&#45;&#45;smooth-gray">via BVN</h3>-->
+                                            <div
+                                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                            >
+                                                <input class="mdl-textfield__input" type="text" id="bvn" />
+                                                <label class="mdl-textfield__label" for="bvn"
+                                                    >Bank Verification Number</label
+                                                >
+                                            </div>
+                                            <li class="mdl-list__item">
+                                                <button
+                                                    type="button"
+                                                    id="show-dialog"
+                                                    data-toggle="modal"
+                                                    data-target="#userDetailsHolder"
+                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange"
+                                                >
+                                                    Submit
+                                                </button>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
+            </main>
         </div>
 
-    </main>
+        <!-- inject:js -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/d3.js"></script>
+        <script src="js/getmdl-select.min.js"></script>
 
-</div>
+        <script src="js/material.js"></script>
+        <script src="js/nv.d3.js"></script>
+        <script src="js/layout/layout.js"></script>
+        <script src="js/scroll/scroll.js"></script>
+        <script src="js/widgets/charts/discreteBarChart.js"></script>
+        <script src="js/widgets/charts/linePlusBarChart.js"></script>
+        <script src="js/widgets/charts/stackedBarChart.js"></script>
+        <script src="js/widgets/employer-form/employer-form.js"></script>
+        <script src="js/widgets/line-chart/line-charts-nvd3.js"></script>
+        <script src="js/widgets/map/maps.js"></script>
+        <script src="js/widgets/pie-chart/pie-charts-nvd3.js"></script>
+        <script src="js/widgets/table/table.js"></script>
+        <script src="js/widgets/todo/todo.js"></script>
+        <script src="js/custom.js"></script>
+        <!-- endinject -->
 
-<!-- inject:js -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/d3.js"></script>
-<script src="js/getmdl-select.min.js"></script>
-
-<script src="js/material.js"></script>
-<script src="js/nv.d3.js"></script>
-<script src="js/layout/layout.js"></script>
-<script src="js/scroll/scroll.js"></script>
-<script src="js/widgets/charts/discreteBarChart.js"></script>
-<script src="js/widgets/charts/linePlusBarChart.js"></script>
-<script src="js/widgets/charts/stackedBarChart.js"></script>
-<script src="js/widgets/employer-form/employer-form.js"></script>
-<script src="js/widgets/line-chart/line-charts-nvd3.js"></script>
-<script src="js/widgets/map/maps.js"></script>
-<script src="js/widgets/pie-chart/pie-charts-nvd3.js"></script>
-<script src="js/widgets/table/table.js"></script>
-<script src="js/widgets/todo/todo.js"></script>
-<!-- endinject -->
-
-<script>
-    // $('#show-dialog').click(function (e) {
-    //     e.preventDefault();
-    //
-    //     let detailsModal = $('#userDetailsHolder');
-    //   //  detailsModal.find('.modal-lg').removeClass('larger');
-    //     // $.blockUI({message: 'Loading...'});
-    //
-    //     $.post('http://api.secops', {
-    //         bnv: '', account_number: ''
-    //     }, (response) => {
-    //        // $.unblockUI();
-    //
-    //       //  detailsModal.modal();
-    //       //  detailsModal.find('.modal-body').html(response);
-    //
-    //
-    //     }).fail((error) => {
-    //        // $.unblockUI();
-    //         //detailsModal.modal();
-    //
-    //       //  toastr.error('Failed to load data.');
-    //         console.log(error);
-    //     })
-    // });
-</script>
-</body>
+        <script>
+            // $('#show-dialog').click(function (e) {
+            //     e.preventDefault();
+            //
+            //     let detailsModal = $('#userDetailsHolder');
+            //   //  detailsModal.find('.modal-lg').removeClass('larger');
+            //     // $.blockUI({message: 'Loading...'});
+            //
+            //     $.post('http://api.secops', {
+            //         bnv: '', account_number: ''
+            //     }, (response) => {
+            //        // $.unblockUI();
+            //
+            //       //  detailsModal.modal();
+            //       //  detailsModal.find('.modal-body').html(response);
+            //
+            //
+            //     }).fail((error) => {
+            //        // $.unblockUI();
+            //         //detailsModal.modal();
+            //
+            //       //  toastr.error('Failed to load data.');
+            //         console.log(error);
+            //     })
+            // });
+        </script>
+    </body>
 </html>
