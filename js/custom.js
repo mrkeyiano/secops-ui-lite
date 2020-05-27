@@ -1,50 +1,3 @@
-const data = {
-    lastName: 'OBI',
-    firstName: 'JUDE',
-    watchListed: 'NO',
-    enrollmentBranch: 'AWO-OMAMMA',
-    gender: 'Male',
-    stateOfOrigin: 'Imo State',
-    phoneNumber1: '08189927988',
-    phoneNumber2: '',
-    stateOfResidence: 'Imo State',
-    title: 'Mr',
-    levelOfAccount: 'Level 1 - Low Level Accounts',
-    nin: '',
-    nameOnCard: 'OBI CHIBUIKE JUDE',
-    registrationDate: '26-Feb-2015',
-    bvn: '22197755480',
-    email: '',
-    dateOfBirth: '02-Jan-1976',
-    lgaOfResidence: 'Oru East',
-    nationality: 'Nigeria',
-    lgaOfOrigin: 'Oru East',
-    residentialAddress: 'OBI FAMILY, UMUDURUANOWA KINDRED AT  UMUBOCHI AWO-OMAMMA',
-    enrollmentBank: '011',
-    middleName: 'CHIBUIKE',
-    maritalStatus: 'Married',
-}
-
-
-$('#show-dialog').click(function (e) {
-    e.preventDefault();
-
-
-    let bvn = '';
-
-    $.post('https://secops.patriciadev.com/api/verify/bvn', {
-        bvn:  $("#bvn"). val()
-    }, (response) => {
-        console.log(response);
-
-    }).fail((error) => {
-
-        console.log(error);
-    })
-});
-
-const dataKeys = Object.keys(data)
-
 const wrapper = document.querySelector('.info-retrieved-inner')
 
 /**
@@ -64,39 +17,47 @@ const populateHtml = (key, value) => {
                 </div>
             `
 }
-
-/**
- * @description capitalizes the parameter.
- *
- * @param {*} val
- * @returns
- */
-const capitalize = (val) => {
-    return val.charAt(0).toUpperCase() + val.slice(1)
-}
-
-/**
- * @description this function helps to format the keys to separate them into individual words and capitalize them for user's view
- *
- * @param {*} key
- * @returns String
- */
-const formatKey = (key) => {
-    const splittedKey = key.split('')
-    let upperCaseIndex = splittedKey.findIndex((key) => key === key.toUpperCase())
-    if (upperCaseIndex === -1) {
-        return capitalize(key)
-    } else {
-        return capitalize(splittedKey.splice(0, upperCaseIndex).join('')) + ' ' + splittedKey.join('')
-    }
-}
-
 /**
  * this is to populate the values and the keys in html
  */
-for (let i = 0; i < dataKeys.length; i += 1) {
-    const div = document.createElement('div')
-    div.classList.add('info')
-    div.innerHTML = populateHtml(formatKey(dataKeys[i]), data[dataKeys[i]])
-    wrapper.appendChild(div)
+const populateData = (data) => {
+    const dataKeys = Object.keys(data)
+    for (let i = 0; i < dataKeys.length; i += 1) {
+        if (dataKeys[i] !== 'base64image') {
+            const div = document.createElement('div')
+            div.classList.add('info')
+            div.innerHTML = populateHtml(dataKeys[i], data[dataKeys[i]])
+            wrapper.appendChild(div)
+        } else {
+            $('#user_image').attr('src', data['base64image'])
+        }
+    }
+}
+
+let errorField = document.querySelector('#error')
+let loader = document.querySelector('#loader')
+
+const getData = (e) => {
+    e.preventDefault()
+    error.innerHTML = ''
+    let bvn = $('#bvn').val()
+    if (bvn.length === 11) {
+        loader.classList.remove('d-none')
+        $.post(
+            'https://secops.patriciadev.com/api/verify/bvn',
+            {
+                bvn,
+            },
+            (response) => {
+                populateData(response.data)
+                $('#userDetailsHolder').modal('show')
+                loader.classList.add('d-none')
+            }
+        ).fail((error) => {
+            loader.classList.add('d-none')
+            console.log(error)
+        })
+    } else {
+        error.innerHTML = 'BVN is invalid'
+    }
 }

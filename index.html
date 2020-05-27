@@ -98,10 +98,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="image-container">
-                            <img
-                                src="https://images.unsplash.com/photo-1520528105264-de3db89485f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                                alt="image of user"
-                            />
+                            <img id="user_image" src="" alt="image of user" />
                         </div>
                         <div class="info-retrieved">
                             <div class="info-retrieved-inner"></div>
@@ -152,7 +149,7 @@
                                 <h5 class="mdl-card__title-text text-color--white">Retrieve User Metadata</h5>
                             </div>
                             <div class="mdl-card__supporting-text">
-                                <form class="form form--basic">
+                                <form class="form form--basic" onsubmit="getData(event)">
                                     <div class="mdl-grid">
                                         <div
                                             class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article"
@@ -160,32 +157,34 @@
                                             <h3 class="text-color--smooth-gray">
                                                 Please provide Bvn of customer to fetch details
                                             </h3>
-<!--                                            <div-->
-<!--                                                class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label full-size"-->
-<!--                                            >-->
-<!--                                                <input class="mdl-textfield__input" type="text" id="account-number" />-->
-<!--                                                <label class="mdl-textfield__label" for="account-number"-->
-<!--                                                    >Account Number</label-->
-<!--                                                >-->
-<!--                                            </div>-->
+                                            <!--                                            <div-->
+                                            <!--                                                class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label full-size"-->
+                                            <!--                                            >-->
+                                            <!--                                                <input class="mdl-textfield__input" type="text" id="account-number" />-->
+                                            <!--                                                <label class="mdl-textfield__label" for="account-number"-->
+                                            <!--                                                    >Account Number</label-->
+                                            <!--                                                >-->
+                                            <!--                                            </div>-->
                                             <!-- <h3 class="text-color&#45;&#45;smooth-gray">via BVN</h3>-->
                                             <div
                                                 class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
                                             >
-                                                <input class="mdl-textfield__input" type="text" id="bvn" />
+                                                <input class="mdl-textfield__input" type="text" id="bvn" required/>
                                                 <label class="mdl-textfield__label" for="bvn"
                                                     >Bank Verification Number</label
                                                 >
                                             </div>
+                                            <div class="error">
+                                                <p id="error"></p>
+                                            </div>
                                             <li class="mdl-list__item">
                                                 <button
-                                                    type="button"
+                                                    type="submit"
                                                     id="show-dialog"
-                                                    data-toggle="modal"
-                                                    data-target="#userDetailsHolder"
                                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange"
                                                 >
                                                     Submit
+                                                    <img src="./images/loader.svg" alt="" id="loader" class="d-none" />
                                                 </button>
                                             </li>
                                         </div>
@@ -219,7 +218,5 @@
         <script src="js/widgets/todo/todo.js"></script>
         <script src="js/custom.js"></script>
         <!-- endinject -->
-
-
     </body>
 </html>
