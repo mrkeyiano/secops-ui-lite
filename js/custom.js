@@ -29,7 +29,7 @@ const populateData = (data) => {
             div.innerHTML = populateHtml(dataKeys[i], data[dataKeys[i]])
             wrapper.appendChild(div)
         } else {
-            $('#user_image').attr('src', data['base64image'])
+            $('#user_image').attr('src', `data:image/png;base64,${data['base64image']}`)
         }
     }
 }
@@ -49,8 +49,12 @@ const getData = (e) => {
                 bvn,
             },
             (response) => {
-                populateData(response.data)
-                $('#userDetailsHolder').modal('show')
+                if (response.statuscode == '00') {
+                    populateData(response.data)
+                    $('#userDetailsHolder').modal('show')
+                } else {
+                    toastr.error(response.message, 'Error!')
+                }
                 loader.classList.add('d-none')
             }
         ).fail((error) => {
@@ -61,3 +65,7 @@ const getData = (e) => {
         error.innerHTML = 'BVN is invalid'
     }
 }
+
+$('#userDetailsHolder').on('hidden.bs.modal', function () {
+    wrapper.innerHTML = ''
+})
