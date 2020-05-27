@@ -41,6 +41,9 @@ const getData = (e) => {
     e.preventDefault()
     error.innerHTML = ''
     let bvn = $('#bvn').val()
+    let accountNumber = $('#account-number').val()
+    let bankcode = $('#bankcode').val();
+
     if (bvn.length === 11) {
         loader.classList.remove('d-none')
         $.post(
@@ -61,11 +64,57 @@ const getData = (e) => {
             loader.classList.add('d-none')
             console.log(error)
         })
-    } else {
-        error.innerHTML = 'BVN is invalid'
+    } else if(accountNumber.length === 10) {
+        loader.classList.remove('d-none')
+        $.post(
+            'https://secops.patriciadev.com/api/verify/bvn',
+            {
+                'accountNumber' : accountNumber, 'bankcode' : bankcode,
+            },
+            (response) => {
+                if (response.statuscode == '00') {
+                    populateData(response.data)
+                    $('#userDetailsHolder').modal('show')
+                } else {
+                    toastr.error(response.message, 'Error!')
+                }
+                loader.classList.add('d-none')
+            }
+        ).fail((error) => {
+            loader.classList.add('d-none')
+            console.log(error)
+        })
+
+
     }
+
+    else {
+        error.innerHTML = 'A valid BVN or Account Number is required'
+    }
+
+
 }
 
 $('#userDetailsHolder').on('hidden.bs.modal', function () {
     wrapper.innerHTML = ''
 })
+
+
+
+function populateSelect() {
+
+    $.getScript("js/banks.js", function () {
+
+        // THE JSON ARRAY.
+
+
+        var ele = document.getElementById('bankcode');
+        for (var i = 0; i < banklist.length; i++) {
+            // POPULATE SELECT ELEMENT WITH JSON.
+            ele.innerHTML = ele.innerHTML +
+                '<option value="' + banklist[i]['bankcode'] + '">' + banklist[i]['bankname'].toLowerCase().replace(/(?<= )[^\s]|^./g, a=>a.toUpperCase()) + '</option>';
+        }
+
+    });
+
+}
