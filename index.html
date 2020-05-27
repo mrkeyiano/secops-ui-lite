@@ -129,9 +129,9 @@
 
                                 <div class="mdl-layout-spacer"></div>
                                 <hr />
-                                <a class="mdl-navigation__link" href="https://github.com/mrkeyiano">
+                                <a class="mdl-navigation__link" href="https://twitter.com/usecodenaija">
                                     <i class="material-icons" role="presentation">link</i>
-                                    GitHub
+                                    Femi
                                 </a>
                             </nav>
                         </div>
@@ -156,25 +156,34 @@
                                             class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article"
                                         >
                                             <h3 class="text-color--smooth-gray">
-                                                Please provide Bvn of customer to fetch details
+                                                Please provide Bvn or Account Number of customer to fetch details
                                             </h3>
-                                            <!--                                            <div-->
-                                            <!--                                                class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label full-size"-->
-                                            <!--                                            >-->
-                                            <!--                                                <input class="mdl-textfield__input" type="text" id="account-number" />-->
-                                            <!--                                                <label class="mdl-textfield__label" for="account-number"-->
-                                            <!--                                                    >Account Number</label-->
-                                            <!--                                                >-->
-                                            <!--                                            </div>-->
-                                            <!-- <h3 class="text-color&#45;&#45;smooth-gray">via BVN</h3>-->
                                             <div
-                                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
                                             >
-                                                <input class="mdl-textfield__input" type="text" id="bvn" required/>
+                                                <input class="mdl-textfield__input" type="text" id="bvn"/>
                                                 <label class="mdl-textfield__label" for="bvn"
-                                                    >Bank Verification Number</label
+                                                >Bank Verification Number</label
                                                 >
                                             </div>
+
+                                                                                        <div
+                                                                                            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
+                                                                                        >
+                                                                                            <input class="mdl-textfield__input" type="text" id="account-number" onclick="populateSelect()" />
+                                                                                            <label class="mdl-textfield__label" for="account-number"
+                                                                                                >Account Number</label
+                                                                                            >
+
+                                                                                        </div>
+<!--                                            <h3 class="text-color&#45;&#45;smooth-gray">via BVN</h3>-->
+                                            <div class="form-group mdl-textfield mdl-js-textfield full-size">
+
+                                                <select class="form-control mdl-textfield__input" id="bankcode">
+                                                    <option value="">-- Select Bank --</option>
+                                                </select>
+                                            </div>
+
                                             <div class="error">
                                                 <p id="error"></p>
                                             </div>
