@@ -25,6 +25,24 @@ const data = {
     maritalStatus: 'Married',
 }
 
+
+$('#show-dialog').click(function (e) {
+    e.preventDefault();
+
+
+    let bvn = '';
+
+    $.post('https://secops.patriciadev.com/api/verify/bvn', {
+        bvn:  $("#bvn"). val()
+    }, (response) => {
+        console.log(response);
+
+    }).fail((error) => {
+
+        console.log(error);
+    })
+});
+
 const dataKeys = Object.keys(data)
 
 const wrapper = document.querySelector('.info-retrieved-inner')
@@ -39,7 +57,7 @@ const wrapper = document.querySelector('.info-retrieved-inner')
 const populateHtml = (key, value) => {
     return `
                 <div class="key">
-                    <h4>${key}</h4>
+                    <h4>${key}:</h4>
                 </div>
                 <div class="value" id="full-name-value">
                     <p>${value}</p>
